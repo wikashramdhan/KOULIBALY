@@ -1,0 +1,71 @@
+﻿@model List<GameResultViewModel>
+@{
+    ViewData["Title"] = "Game";
+}
+
+<h1>Results</h1>
+
+@if (Model.Any())
+{
+    <div class="card" style="width: auto;">
+        <div class="card-header">
+            Poule Results
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>Teamname</td>
+                        <td>Points</td>
+                        <td>Goals for</td>
+                        <td>Goals against</td>
+                        <td>Goal difference</td>
+                    </tr>
+
+                </thead>
+                @foreach (GameResultViewModel game in Model)
+                {
+                    <tr>
+                        <td>@game.TeamName</td>
+                        <td>@game.Points</td>
+                        <td>@game.GoalsFor</td>
+                        <td>@game.GoalsAgainst</td>
+                        <td>@game.GoalDifference</td>
+                    </tr>
+
+                }
+
+            </table>
+        </div>
+    </div>
+
+    <div class="card" style="width: auto;">
+        <div class="card-header">
+            Game Results
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>Home team</td>
+                        <td>Home score</td>
+                        <td>Away score</td>
+                        <td>Away team</td>
+                    </tr>
+
+                </thead>
+                @foreach (Game gameResult in ViewBag.Games)
+                {
+                    <tr>
+                        <td>@gameResult.HomeTeam.Name</td>
+                        <td>@gameResult.HomeScore</td>
+                        <td>@gameResult.AwayScore</td>
+                        <td>@gameResult.AwayTeam.Name</td>
+                    </tr>
+
+                }
+
+            </table>
+        </div>
+    </div>
+}
