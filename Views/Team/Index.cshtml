@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Team>
+
+@{
+    ViewData["Title"] = "Teams";
+}
+
+<h1>Teams</h1>
+
+<a class="btn btn-primary mb-3" style="width:auto" asp-action="Create" asp-controller="Team">Add new team</a>
+
+@if(Model.Any())
+{
+    
+
+    foreach(var teams in Model)
+    {
+        <div class="card mb-3">
+            <div class="card-header">
+                <h5 class="card-title">@teams.Name</h5> 
+            </div>
+            <div class="card-body">
+                Team strength: @teams.Strength
+            </div>
+            <div class="card-footer">
+                <form asp-action="Delete" asp-controller="Team" asp-route-id="@teams.Id" method="post">
+                    <a class="btn btn-primary" asp-action="Edit" asp-controller="Team" asp-route-id="@teams.Id">Edit</a>
+                    <button class="btn btn-danger" type="submit" OnClick="return confirm('Are you sure you want to delete: @teams.Name?')">Delete</button>
+                </form>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="card">
+        <div class="card-header">
+            No Teams yet
+        </div>
+    </div>
+}
+
